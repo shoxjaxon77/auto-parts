@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+
+<style>
+    #car-detail {
+        margin-top: 20px;
+    }
+
+    .card {
+        margin-bottom: 30px;
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid transparent;
+        border-radius: 0;
+    }
+
+    .card .card-subtitle {
+        font-weight: 300;
+        margin-bottom: 10px;
+        color: #8898aa;
+    }
+
+    .table-product.table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f3f8fa !important
+    }
+
+    .table-product td {
+        border-top: 0px solid #dee2e6 !important;
+        color: #728299 !important;
+    }
+
+    .card-title {
+        font-size: 50px;
+    }
+
+    .btn-buy {
+        width: 110px;
+        height: 40px;
+        background-color: #292974;
+        border-radius: 30px;
+        border: 2px solid transparent;
+        color: white;
+        font-size: 12px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+
+    }
+
+    .btn-buy:hover {
+        background-color: #ff5733;
+    }
+
+    .backlist {
+        display: flex;
+        text-align: center;
+
+        gap: 10px;
+        margin: 40px 0 0 30px;
+    }
+
+    .container .section-header {
+        margin-top: 100px;
+        margin-bottom: 100px;
+
+    }
+
+    .section-header h2 {
+        padding-top: 80px;
+    }
+
+    .kategoriya {
+        background-color: #292974;
+        height: 60px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    .header-category {
+        margin-left: 600px;
+    }
+
+    .backlist {
+        margin-top: 130px;
+    }
+
+    .edit {
+        margin-left: 40px;
+    }
+
+    .plus {
+        margin-left: 300px;
+        font-size: 200px;
+    }
+</style>
+<style>
+    .car-info {
+        margin-top: 60px;
+        width: 550px;
+        display: flex;
+        align-items: center;
+    }
+
+    .car-info img {
+        margin-left: 30px;
+        width: 850px;
+        height: auto;
+    }
+
+    .car-info table {
+        margin-left: 80px;
+        margin-bottom: 80px;
+        border-collapse: collapse;
+        width: 800px;
+    }
+
+    .car-info table th,
+    .car-info table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .car-info table th {
+        background-color: #f2f2f2;
+    }
+
+    .categories {
+        margin-top: 20px;
+    }
+
+    .category {
+
+        margin-bottom: 20px;
+    }
+
+    .category h2 {
+        text-align: center;
+        font-size: 60px;
+        background-color: #292974;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .category .ul {
+
+        margin: 0 0 10px 400px;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .category .ul .li {
+        display: flex;
+
+        width: 800px;
+        height: 300px;
+        background-color: #f2f2f2;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .item {
+        margin-left: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .category .ul .li img {
+        max-width: 300px;
+        object-fit: cover;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .car-nomi {
+        font-size: 100px;
+        text-align: center;
+        margin-left: 100px;
+        margin-bottom: 100px;
+    }
+
+    .backlist {
+        display: flex;
+        text-align: center;
+        margin-bottom: 30px;
+        gap: 10px;
+        margin: 150px 0 0 30px;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+<div class="backlist">
+    <a href="{% url 'mahsulot' %}"><button class="btn-buy"><i class="bi bi-arrow-left"></i> Back to Cars</button></a>
+</div>
+<div class="car-detail">
+
+    <div class="car-info">
+        <img src="{{ car.image.url }}" alt="{{ car.nomi }}">
+        <div>
+            <h1 class="car-nomi">{{ car.nomi }}</h1>
+            <table>
+                <tr>
+                    <th>Название</th>
+                    <td>{{ car.nomi }}</td>
+                </tr>
+                <tr>
+                    <th>Модель</th>
+                    <td>{{ car.modeli }}</td>
+                </tr>
+                <tr>
+                    <th>Позиция</th>
+                    <td>{{ car.pozitsiya }}</td>
+                </tr>
+                <tr>
+                    <th>Тип топлива</th>
+                    <td>{{ car.turi }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="categories">
+    {% for category, spares in categorized_spares.items %}
+    <div class="category">
+        <h2>{{ category }}</h2>
+        <div class="ul">
+            {% for spare in spares %}
+            <div class="li">
+                <img src="{{ spare.picture.url }}" alt="{{ spare.nomi }}">
+                <div class="item">
+                    <h1>{{ spare.nomi }} - {{ spare.narxi }} $</h1>
+                    <br>
+                    <div class="editdelete">
+                        {% if user.is_superuser %}
+                        <a href="{% url 'qismdelete' spare.id  %}" onclick="return confirmDelete('{{ i.id }}')"><i
+                                class="bi bi-trash-fill delete"></i></a>
+                        <a href="{% url 'qismedit' spare.id %}"><i class="bi bi-pencil-fill edit"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+            
+            {% endfor %}
+            {% if user.is_superuser %}
+            <a href="{% url 'addmahsulot' %}"><i class="bi bi-plus-square-fill plus"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<script>
+    function confirmDelete(id) {
+        if (confirm("Вы уверены, что хотите удалить этот элемент?")) {
+            window.location.href = "/delete/" + id; // Update the URL according to your project structure
+        }
+    }
+</script>
+
+
+{% endblock content %}

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} home sahifasi  {% endblock %}
+
+
+
+          
+{% block style %}    
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+<section id="home" class="welcome-hero">
+<div class="container">
+  <div class="welcome-hero-txt">
+    <h2>ЗАПЧАСТИ ДЛЯ ВАШЕГО АВТОМОБИЛЯ</h2>
+    <p>
+      Усовершенствуйте свой автомобиль вместе с нами.
+    </p>
+    <button class="welcome-btn" onclick="window.location.href='/#contact'">связаться с нами
+    </button>
+  </div>
+</div>
+</section>
+
+
+<!--service start -->
+<section id="service" class="service">
+<div class="container">
+  <div class="section-header">
+    <h2>автомобили</h2>
+  </div>
+  <div class="service-content">
+      {% for i in cars %}
+      <div  class="col-md-4 col-sm-6">
+        <div class="single-service-item">
+          <div class="single-service-icon">
+            <a href="{% url 'car-detail' i.id %}">
+              <img style="width: auto; height: 230px;object-fit: cover;" src="{{ i.image.url }}" alt="img">
+            </a>
+            
+          </div>
+          <h2 ><a href="{% url 'car-detail' i.id %}">{{ i.nomi }}</a></h2>
+          
+        </div>
+      </div>
+      {% endfor %}
+      
+  
+  </div>
+</div><!--/.container-->
+
+</section><!--/.service-->
+<!--service end-->
+
+<!--new-cars start -->
+<section id="new-cars" class="new-cars">
+<div  class="container">
+  <div class="section-header">
+    <h2>запчасти</h2>
+  </div><!--/.section-header-->
+  <div class="new-cars-content">
+    <div class="owl-carousel owl-theme" id="new-cars-carousel">
+      {% for i in extiyotqismlar %}
+      <div class="new-cars-item">
+        <div class="single-new-cars-item">
+          <div class="row">
+              
+                <div style="margin-left: 200px;" class="new-cars-img">
+                  <img style="width: auto; height: 500px; " src="{{ i.picture.url }}" alt="img" />
+                </div><!--/.new-cars-img-->
+              
+            <!--/.col-->
+          </div><!--/.row-->
+        </div><!--/.single-new-cars-item-->
+      </div><!--/.new-cars-item-->
+      {% endfor %}
+    </div><!--/new-cars-carousel-->
+  </div><!--/.new-cars-content-->
+</div><!--/.container-->
+</section><!--/.new-cars-->
+
+
+
+
+
+
+
+<!--brand strat -->
+<section id="brand" class="brand">
+<div class="container">
+  <div class="brand-area">
+    <div class="owl-carousel owl-theme brand-item">
+     {% for i in brands %}
+          <div class="item">
+            <a href="#">
+              <img src="{{ i.image.url }}" alt="brand-image" />
+            </a>
+          </div><!--/.item-->
+     {% endfor %}
+
+    </div><!--/.owl-carousel-->
+  </div><!--/.clients-area-->
+
+</div><!--/.container-->
+
+</section><!--/brand-->
+<!--brand end -->
+
+<!--blog start -->
+<section id="blog" class="blog"></section>
+{% endblock content %}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% block title %} CarVilla {% endblock title %} </title>
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+  <link rel="shortcut icon" type="image/icon" href="{% static 'logo/favicon.png' %}" >
+
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/flaticon.css'%}">
+
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}  ">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootsnav.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+  <script src="{% static 'js/jquery.js' %}"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'js/bootsnav.js' %} "></script>
+
+  <script src="{% static 'js/owl.carousel.min.js' %} "></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+  <script src="{% static 'js/custom.js' %}"></script>
+
+
+
+
+
+  {% block style %}
+
+  {% endblock %}
+
+</head>
+
+<body>
+  <div class="top-area">
+    <div class="header-area">
+      <!-- Start Navigation -->
+      <nav style="background-color: #2a2d54;" class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"
+        data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+
+        <div class="container">
+
+          <!-- Start Header Navigation -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+              <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}">carvilla<span></span></a>
+
+          </div><!--/.navbar-header-->
+          <!-- End Header Navigation -->
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+            <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+              <li class=""><a href="{% url 'home' %}">Главный</a></li>
+              <li><a href="{% url 'mahsulot' %}">автомобили</a></li>
+              <li class=""><a href="/#service">категория</a></li>
+              <li class=""><a href="/#new-cars">запчасти</a></li>
+              <li class=""><a href="/#brand">бренды</a></li>
+              <li class=""><a href="/#contact">контакт</a></li>
+              {% if user.is_authenticated %}
+              <li class=""><a href="{% url 'logout' %}">выход</a></li>
+              {% else %}
+              <li class=""><a style="color: greenyellow;" href="{% url 'login' %}">войти</a></li>
+              {% endif %}
+              
+
+            </ul><!--/.nav -->
+          </div><!-- /.navbar-collapse -->
+        </div><!--/.container-->
+      </nav><!--/nav-->
+      <!-- End Navigation -->
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  {% block content %}
+
+  {% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+  <footer id="contact" class="contact">
+    <div class="container">
+      <div class="footer-top">
+        <div class="row">
+          <div class="col-md-3 col-sm-6">
+            <div class="single-footer-widget">
+              <div class="footer-logo">
+                <a href="index.html">carvilla</a>
+              </div>
+              <p>
+                Запчасти для вашего автомобиля
+              </p>
+              <div class="footer-contact">
+                <p>matniyazovasadbek24@gmail.com</p>
+                <p>+998 91 916 99 59</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-xs-12">
+            <div class="single-footer-widget">
+              <h2>бренды</h2>
+              <div class="row">
+                <div class="col-md-5 col-xs-6">
+                  <ul>
+                    <li><a href="#">Bmw</a></li>
+                    <li><a href="#">supra</a></li>
+                    <li><a href="#">nissan</a></li>
+                    <li><a href="#">bugatti</a></li>
+                    <li><a href="#">Cobalt</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-5 col-xs-6">
+                  <ul>
+                    <li><a href="#">ferrari</a></li>
+                    <li><a href="#">porsche</a></li>
+                    <li><a href="#">land rover</a></li>
+                    <li><a href="#">aston martin</a></li>
+                    <li><a href="#">mersedes</a></li>
+                    <li><a href="#">opel</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-offset-1 col-md-3 col-sm-6">
+            <div class="single-footer-widget">
+              <h2>Новостная рассылка</h2>
+              <div class="footer-newsletter">
+                <p>
+                  Подпишитесь, чтобы получать последние новости и информацию
+                </p>
+              </div>
+              <div class="hm-foot-email">
+                <div class="foot-email-box">
+                  <input type="text" class="form-control" placeholder="Add Email">
+                </div><!--/.foot-email-box-->
+                <div class="foot-email-subscribe">
+                  <span><i class="fa fa-arrow-right"></i></span>
+                </div><!--/.foot-email-icon-->
+              </div><!--/.hm-foot-email-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>
+              &copy; copyright.carvilla
+            </p><!--/p-->
+          </div>
+          <div class="col-sm-6">
+            <div class="footer-social">
+              <a href="https://t.me/Asadbekauto"><i class="fa fa-telegram"></i></a>
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+              <a href="#"><i class="fa fa-pinterest-p"></i></a>
+              <a href="#"><i class="fa fa-behance"></i></a>
+            </div>
+          </div>
+        </div>
+      </div><!--/.footer-copyright-->
+    </div><!--/.container-->
+
+    <div id="scroll-Top">
+      <div class="return-to-top">
+        <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
+          data-original-title="Back to Top" aria-hidden="true"></i>
+      </div>
+
+    </div><!--/.scroll-Top-->
+
+  </footer>
+
+
+
+
+</body>
+
+</html>

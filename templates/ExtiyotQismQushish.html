@@ -1,0 +1,105 @@
+{% load crispy_forms_tags %}
+
+
+{% block style %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+  h1 {
+    font-size: 15px;
+  }
+
+  .form {
+    margin-top: 100px;
+    margin-left: 500px;
+  }
+
+  .head-item {
+    margin-left: 500px;
+
+    font-size: 40px;
+  }
+
+  .table {
+    width: 80%;
+    margin-left: 150px;
+  }
+
+  .form-item {
+    margin-left: 100px;
+    font-size: 40px;
+  }
+
+  .excel-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+  }
+  .excel-button:hover{
+    color: white;
+    background-color: #45a049;
+  }
+  .download{
+    float: right;
+    margin-right: 152px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="head-item">Extiyot qismlar ma'lumotlari</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">nomi</th>
+      <th scope="col">narxi</th>
+      <th scope="col">ma'lumot</th>
+      <th scope="col">miqdori</th>
+      <th scope="col">keltirilgan sana</th>
+      <th scope="col">kategoriya id</th>
+      <th scope="col">picture</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in extiyotqismlar %}
+    <tr class="table-active">
+      <td scope="row">{{i.id}}</td>
+      <td>{{i.nomi}}</td>
+      <td>{{i.narxi}}</td>
+      <td>{{i.malumot}}</td>
+      <td>{{i.miqdori}}</td>
+      <td>{{i.keltirilgan_sana}}</td>
+      <td>{{i.kategoriya_id}}</td>
+      <td>{{i.picture}}</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+<div class="download">
+  <label for="download-link">Ma'lumotlarni yuklab olish</label>
+  <a href="{% url 'export-to-excel' %}" id="download-link" class="excel-button">Excelga yuklash</a>
+</div>
+
+
+
+
+<div class="row form">
+  <div class="col-5">
+    <h1 class="form-item">Extiyot qism qo'shish</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form | crispy }}
+      <button type="submit">Qo'shish</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
