@@ -101,7 +101,7 @@
     }
 
     .plus {
-        margin-left: 300px;
+        margin-left: 250px;
         font-size: 200px;
     }
 </style>
@@ -257,8 +257,12 @@
                 </div>
 
             </div>
-            
+            {% empty %}
+            <h1 style="font-size: 30px;margin: 20px 0 0 0;">Таких автозапчастей нет в наличии в нашем магазине.</h1>
             {% endfor %}
+
+            
+
             {% if user.is_superuser %}
             <a href="{% url 'addmahsulot' %}"><i class="bi bi-plus-square-fill plus"></i></a>
             {% endif %}

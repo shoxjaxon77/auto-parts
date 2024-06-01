@@ -24,7 +24,7 @@ class HomeView(View):
 class MahsulotView(View):
     def get(self, request):
         
-        cars = Transportlar.objects.all().order_by('-id')
+        cars = Transportlar.objects.all().order_by('nomi')
         kategoriya = Kategoriyalar.objects.all()
 
         # search_query = request.GET.get('q', '')

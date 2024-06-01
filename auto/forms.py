@@ -5,7 +5,7 @@ from .models import ExtiyotQismlar,Transportlar,Xaridlar,Brands
 class TransportlarForm(forms.ModelForm):
     class Meta:
         model = Transportlar
-        fields = ('nomi','modeli','pozitsiya','turi')
+        fields = ('nomi','modeli','pozitsiya','turi','image')
 
 
 class ExtiyotQismForm(forms.ModelForm):
