@@ -52,7 +52,7 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="head-item">Extiyot qismlar ma'lumotlari</h1>
+<h1 class="head-item">Информация по автозапчастям</h1>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -84,8 +84,8 @@
 </table>
 
 <div class="download">
-  <label for="download-link">Ma'lumotlarni yuklab olish</label>
-  <a href="{% url 'export-to-excel' %}" id="download-link" class="excel-button">Excelga yuklash</a>
+  <label for="download-link">Загрузить данные</label>
+  <a href="{% url 'export-to-excel' %}" id="download-link" class="excel-button">Загрузить в Excel</a>
 </div>
 
 
@@ -93,11 +93,11 @@
 
 <div class="row form">
   <div class="col-5">
-    <h1 class="form-item">Extiyot qism qo'shish</h1>
+    <h1 class="form-item">Добавить запчасть</h1>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form | crispy }}
-      <button type="submit">Qo'shish</button>
+      <button type="submit">Добавить</button>
     </form>
   </div>
 </div>
